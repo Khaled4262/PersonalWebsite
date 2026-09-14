@@ -201,14 +201,8 @@ function ProjectCard({ p }) {
           })}
         </div>
         {p.link && (
-          <a
-            className="project-link"
-            href={p.link}
-            target="_blank"
-            rel="noreferrer"
-            style={{ border: "3px solid black" }}
-          >
-            View on GitHub
+          <a className="project-link icon-link" href={p.link} target="_blank" rel="noreferrer" aria-label="View on GitHub">
+            <Github size={20} />
           </a>
         )}
       </div>
@@ -283,7 +277,11 @@ function LibraryPage({ onHome }) {
                   );
                 })}
               </div>
-              {p.link && <span className="project-link">View on GitHub →</span>}
+              {p.link && (
+                <span className="project-link icon-link" aria-label="View on GitHub">
+                  <Github size={20} />
+                </span>
+              )}
             </div>
           </div>
         ))}
@@ -626,8 +624,7 @@ export default function PersonalWebsite() {
         .project-summary { max-width: 58ch; font-size: 15px; }
         .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
         .tech-tag { font-size: 12px; padding: 4px 9px; border: 1px solid var(--line-bright); border-radius: 3px; color: var(--ink-dim); }
-        .project-link { display: inline-block; margin-top: 12px; font-size: 13.5px; color: var(--accent); }
-        .project-link:hover { text-decoration: underline; }
+        .project-link { margin-top: 12px; }
 
         .project-card-wrap {
           transition: opacity 0.28s ease, transform 0.28s ease;
