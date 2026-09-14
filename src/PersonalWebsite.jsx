@@ -201,7 +201,13 @@ function ProjectCard({ p }) {
           })}
         </div>
         {p.link && (
-          <a className="project-link" href={p.link} target="_blank" rel="noreferrer">
+          <a
+            className="project-link"
+            href={p.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ border: "3px solid black" }}
+          >
             View on GitHub
           </a>
         )}
