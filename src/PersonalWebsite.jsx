@@ -49,6 +49,8 @@ const TECH_COLORS = {
   "Session security": "#8fbf8f",
   "Anomaly detection": "#9d8cdb",
   "Time-series forecasting": "#9d8cdb",
+  "JavaScript": "#e0c95e",
+  "Browser Extension": "#e08a8a",
 };
 
 const STATUS_COLORS = {
@@ -81,6 +83,16 @@ const PROJECTS = [
       "Watches network traffic for patterns that don't belong, then forecasts where threat activity is likely to move next.",
     tech: ["Machine Learing", "Python", "Anomaly detection", "Time-series forecasting"],
     link: "https://github.com/Khaled4262/Network-Anomaly-Detection-and-Threat-Forecasting-Engine",
+  },
+  {
+    id: "githealth",
+    name: "GitHealth",
+    full: "GitHub-style habit tracker with streaks and a browser extension",
+    status: "Complete",
+    summary:
+      "A GitHub-style contribution graph for daily health habits — click a square to lock in the day, build streaks, and watch a year of consistency take shape. Ships as a web app and a matching Chrome/Edge extension.",
+    tech: ["React", "JavaScript", "Browser Extension"],
+    link: "https://github.com/Khaled4262/githealth",
   },
   {
     id: "gradevault",
@@ -201,8 +213,8 @@ function ProjectCard({ p }) {
           })}
         </div>
         {p.link && (
-          <a className="project-link icon-link" href={p.link} target="_blank" rel="noreferrer" aria-label="View on GitHub">
-            <Github size={20} />
+          <a className="project-link" href={p.link} target="_blank" rel="noreferrer">
+            View on GitHub
           </a>
         )}
       </div>
@@ -241,7 +253,7 @@ function Projects({ current, phase, onPrev, onNext, onOpenLibrary }) {
 function LibraryPage({ onHome }) {
   return (
     <div className="library-page">
-      <button className="home-btn" onClick={onHome}><ArrowLeft size={16} strokeWidth={2.75} /> Home</button>
+      <button className="home-btn" onClick={onHome}>Home</button>
       <h2>Project library</h2>
       <div className="library-list">
         {PROJECTS.map((p) => (
@@ -277,11 +289,7 @@ function LibraryPage({ onHome }) {
                   );
                 })}
               </div>
-              {p.link && (
-                <span className="project-link icon-link" aria-label="View on GitHub">
-                  <Github size={20} />
-                </span>
-              )}
+              {p.link && <span className="project-link">View on GitHub →</span>}
             </div>
           </div>
         ))}
@@ -336,11 +344,6 @@ export default function PersonalWebsite() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
-
   const goTo = (id) => {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -378,6 +381,7 @@ export default function PersonalWebsite() {
           --line-bright: #3a3345;
           --accent: #9d8cdb;
           --accent-dim: #6f63a0;
+          --nav-bg: rgba(15, 13, 20, 0.9);
         }
 
         :root[data-theme="light"] {
@@ -389,6 +393,7 @@ export default function PersonalWebsite() {
           --line-bright: #cfc7de;
           --accent: #7c4dd9;
           --accent-dim: #9c85cf;
+          --nav-bg: rgba(247, 245, 251, 0.9);
         }
 
         html, body { background: var(--bg); }
@@ -418,8 +423,9 @@ export default function PersonalWebsite() {
           justify-content: flex-end;
           gap: 28px;
           padding: 18px clamp(20px, 6vw, 64px);
-          background: rgba(15, 13, 20, 0.9);
+          background: var(--nav-bg);
           backdrop-filter: blur(6px);
+          transition: background 0.2s ease, border-color 0.2s ease;
           border-bottom: 1px solid transparent;
           transition: border-color 0.2s ease;
         }
@@ -492,60 +498,15 @@ export default function PersonalWebsite() {
           transform: translateY(-2px);
         }
         .nav-toggle:active { transform: translateY(0) scale(0.97); }
-
-        .nav-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 25;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.25s ease;
-        }
-        .nav-overlay.open { opacity: 1; pointer-events: auto; }
-
         .nav-mobile {
-          position: fixed;
-          top: 0;
-          right: 0;
-          height: 100vh;
-          width: min(75vw, 300px);
-          background: var(--bg-raised);
-          border-left: 1px solid var(--line-bright);
-          box-shadow: -12px 0 30px rgba(0, 0, 0, 0.35);
-          z-index: 30;
           display: flex;
           flex-direction: column;
-          padding: 80px 28px 24px;
-          transform: translateX(100%);
-          transition: transform 0.28s ease;
-        }
-        .nav-mobile.open { transform: translateX(0); }
-        .nav-mobile button {
-          background: none;
-          border: none;
+          padding: 0 clamp(20px, 6vw, 64px) 14px;
           border-bottom: 1px solid var(--line);
-          color: var(--ink-dim);
-          text-align: left;
-          padding: 16px 0;
-          font: inherit;
-          font-size: 16.5px;
         }
-        .nav-mobile-close {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: none;
-          background: var(--line);
-          color: var(--ink);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 16px;
-          cursor: pointer;
+        .nav-mobile button {
+          background: none; border: none; color: var(--ink-dim);
+          text-align: left; padding: 10px 0; font: inherit; font-size: 15px;
         }
 
         section { padding: clamp(48px, 8vw, 96px) clamp(20px, 6vw, 64px); max-width: 900px; margin: 0 auto; }
@@ -585,7 +546,7 @@ export default function PersonalWebsite() {
         .fact-row span { padding: 0 14px; border-left: 1px solid var(--line-bright); }
         .fact-row span:first-child { padding-left: 0; border-left: none; }
 
-        
+
         .section-head h2 { font-size: 36px; }
 
         .work-row { padding: 18px 0; border-top: 1px solid var(--line); text-align: left; }
@@ -624,7 +585,8 @@ export default function PersonalWebsite() {
         .project-summary { max-width: 58ch; font-size: 15px; }
         .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
         .tech-tag { font-size: 12px; padding: 4px 9px; border: 1px solid var(--line-bright); border-radius: 3px; color: var(--ink-dim); }
-        .project-link { margin-top: 12px; }
+        .project-link { display: inline-block; margin-top: 12px; font-size: 13.5px; color: var(--accent); }
+        .project-link:hover { text-decoration: underline; }
 
         .project-card-wrap {
           transition: opacity 0.28s ease, transform 0.28s ease;
@@ -677,7 +639,7 @@ export default function PersonalWebsite() {
         }
         .library-btn:active { transform: translateY(0) scale(0.97); }
 
-        .library-page { max-width: 900px; margin: 0 auto; padding: 28px clamp(20px, 6vw, 64px) 80px; }
+        .library-page { max-width: 900px; margin: 0 auto; padding: 96px clamp(20px, 6vw, 64px) 80px; }
         .home-btn {
         position: fixed;
         top: 20px;
@@ -767,7 +729,12 @@ export default function PersonalWebsite() {
       `}</style>
 
       {page === "library" ? (
-        <LibraryPage onHome={() => setPage("home")} />
+        <LibraryPage
+          onHome={() => {
+            setPage("home");
+            window.scrollTo(0, 0);
+          }}
+        />
       ) : (
         <>
           <nav className={`nav${scrolled ? " scrolled" : ""}`}>
@@ -786,14 +753,13 @@ export default function PersonalWebsite() {
               ☰
             </button>
           </nav>
-
-          <div className={`nav-overlay${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(false)} />
-          <div className={`nav-mobile${menuOpen ? " open" : ""}`}>
-            <button className="nav-mobile-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">✕</button>
-            {NAV.map((n) => (
-              <button key={n.id} onClick={() => goTo(n.id)}>{n.label}</button>
-            ))}
-          </div>
+          {menuOpen && (
+            <div className="nav-mobile">
+              {NAV.map((n) => (
+                <button key={n.id} onClick={() => goTo(n.id)}>{n.label}</button>
+              ))}
+            </div>
+          )}
 
           <Hero />
           <Work />
@@ -802,7 +768,10 @@ export default function PersonalWebsite() {
             phase={cardPhase}
             onPrev={prevProject}
             onNext={nextProject}
-            onOpenLibrary={() => setPage("library")}
+            onOpenLibrary={() => {
+              setPage("library");
+              window.scrollTo(0, 0);
+            }}
           />
           <Contact />
 
