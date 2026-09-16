@@ -71,6 +71,17 @@ const WORK = [
       "Documented system architecture for non-technical stakeholders.",
     ],
   },
+  {
+    id: "discrete-structures-ta",
+    name: "University of New Brunswick",
+    role: "Discrete Structures Teaching Assistant",
+    dates: "January 2025 - April 2025",
+    bullets: [
+      "Personally nominated by Professor Connor Wilson to serve as his teaching assistant.",
+      "Graded weekly assignments for 40-50 students with a focus on accuracy and consistency.",
+      "Delivered feedback efficiently on a weekly turnaround with zero negative feedback from students.",
+    ],
+  },
 ];
 
 const PROJECTS = [
