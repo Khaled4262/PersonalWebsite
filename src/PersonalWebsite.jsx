@@ -176,10 +176,10 @@ function Work() {
       {WORK.map((w) => (
         <div className="work-row" key={w.id}>
           <div className="work-header">
-            <div className="work-name">{w.name}</div>
+            <div className="work-name">{w.role}</div>
           </div>
           <div className="role-header-with-date">
-            {w.role && <div className="work-meta">{w.role}</div>}
+            <div className="work-meta">{w.name}</div>
             <div className="work-dates">{w.dates}</div>
           </div>
           {w.bullets && w.bullets.length ? (
