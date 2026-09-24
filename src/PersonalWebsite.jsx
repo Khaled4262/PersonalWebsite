@@ -91,7 +91,7 @@ const PROJECTS = [
     full: "Network Anomaly Detection & Threat Forecasting Engine",
     status: "Complete",
     summary:
-      "Watches network traffic for patterns that don't belong, then forecasts where threat activity is likely to move next.",
+      "A machine learning system for detecting network intrusions and anomalous traffic patterns. Built with scikit-learn, FastAPI, React, Docker, and deployed on AWS EC2 with automated CI/CD pipelines.",
     tech: ["Machine Learing", "Python", "Anomaly detection", "Time-series forecasting"],
     link: "https://github.com/Khaled4262/Network-Anomaly-Detection-and-Threat-Forecasting-Engine",
   },
