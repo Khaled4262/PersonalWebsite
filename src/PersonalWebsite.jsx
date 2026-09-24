@@ -92,7 +92,7 @@ const PROJECTS = [
     status: "Complete",
     summary:
       "A machine learning system for detecting network intrusions and anomalous traffic patterns. Built with scikit-learn, FastAPI, React, Docker, and deployed on AWS EC2 with automated CI/CD pipelines.",
-    tech: ["Machine Learing", "Python", "Anomaly detection", "Time-series forecasting"],
+    tech: ["Machine Learing", "Python", "Docker", "AWS"],
     link: "https://github.com/Khaled4262/Network-Anomaly-Detection-and-Threat-Forecasting-Engine",
   },
   {
