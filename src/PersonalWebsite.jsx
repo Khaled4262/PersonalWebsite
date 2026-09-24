@@ -89,7 +89,7 @@ const PROJECTS = [
     id: "nadtfe",
     name: "NADTFE",
     full: "Network Anomaly Detection & Threat Forecasting Engine",
-    status: "In progress",
+    status: "Complete",
     summary:
       "Watches network traffic for patterns that don't belong, then forecasts where threat activity is likely to move next.",
     tech: ["Machine Learing", "Python", "Anomaly detection", "Time-series forecasting"],
