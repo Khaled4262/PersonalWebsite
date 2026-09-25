@@ -21,7 +21,7 @@
  */
 
 import { useState, useEffect } from "react";
-import { Download, ArrowLeft, ArrowRight } from "lucide-react";
+import { Download, ArrowLeft, ArrowRight, Sun, Moon } from "lucide-react";
 
 function Github({ size = 20 }) {
   return (
@@ -465,21 +465,23 @@ export default function PersonalWebsite() {
         .nav-links button:hover { color: var(--ink); }
         .nav-links button:hover::after { width: 100%; }
         .theme-toggle {
-          position: fixed;
-          top: 20px;
-          left: 20px;
-          z-index: 30;
-          border: none;
-          background: var(--bg-raised);
-          box-shadow: 0 4px 14px rgba(157, 140, 219, 0.2), inset 0 0 0 1px var(--line-bright);
-          color: var(--ink);
-          font: inherit;
-          font-size: 13px;
-          padding: 11px 18px;
-          border-radius: 999px;
-          cursor: pointer;
-          transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
-        }
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 30;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: var(--bg-raised);
+            box-shadow: 0 4px 14px rgba(157, 140, 219, 0.2), inset 0 0 0 1px var(--line-bright);
+            color: var(--ink);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+          }
         .theme-toggle:hover {
           background: var(--accent);
           color: #fff;
@@ -757,8 +759,9 @@ export default function PersonalWebsite() {
             <button
               className="theme-toggle"
               onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {theme === "dark" ? "Light mode" : "Dark mode"}
+              {theme === "dark" ? <Sun size={18} strokeWidth={2.25} /> : <Moon size={18} strokeWidth={2.25} />}
             </button>
             <button className="nav-toggle" onClick={() => setMenuOpen((v) => !v)} aria-label="Toggle menu">
               ☰
